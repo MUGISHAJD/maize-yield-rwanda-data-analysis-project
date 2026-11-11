@@ -1,0 +1,16 @@
+Step,Operation,Columns,Action,Reason,Records affected,Before,After
+1,Tidy text labels,"record_id, season, province, district, soil_type, seed_variety, farming_practice, irrigation","Strip spaces, season in capital letters","One label for each category, season and district",0,"{'season': 3, 'province': 5, 'district': 30, 'soil_type': 5, 'seed_variety': 6, 'farming_practice': 2, 'irrigation': 2}","{'season': 3, 'province': 5, 'district': 30, 'soil_type': 5, 'seed_variety': 6, 'farming_practice': 2, 'irrigation': 2}"
+2,Remove duplicates,all,Keep the first of any repeated record,No repeated farm records may remain,0,"(1426, 20)","(1426, 20)"
+3,Correct data types,irrigation,"Yes -> 1, No -> 0",A model needs numbers; the meaning is unchanged,1426,"{'No': 1298, 'Yes': 128}","{0: 1298, 1: 128}"
+4,Impossible values,"year, altitude_m, rainfall_mm, avg_temp_c, soil_ph, npk_kg_ha, urea_kg_ha, manure_t_ha, plant_density_per_ha, farm_area_ha, pest_incidence_index, yield_t_ha",Set to missing if outside the possible range,An impossible value is an error and must not be trusted,0,39 missing cells,39 missing cells
+5,Outliers: farm_area_ha,farm_area_ha,Keep; log transformation in Stage 5,"Larger farms are realistic, not errors",0,75 IQR outliers,75 kept
+6,Outliers: other columns,"soil_ph, pest_incidence_index, manure_t_ha, yield_t_ha",Keep,All inside the possible range given by the agronomist,0,inside possible range,kept
+7,Values outside typical range,"avg_temp_c, yield_t_ha",Keep,Cool records are highland farms; high yields are improved varieties,0,363 checked,kept
+8,Rainfall at lower limit,rainfall_mm,Keep; report as a limit,Possible in the dry Season C,0,21 records at 150.0 mm,kept
+9,Zeros in fertiliser and manure,"npk_kg_ha, urea_kg_ha, manure_t_ha",Keep as zero,"Zero means none applied, not missing",0,zeros,kept
+10,Leakage check,all,Remove columns known only after harvest: none found,Question E needs only information known before harvest,0,20,20
+11,Records without target,yield_t_ha,Remove,Cannot be used to learn or to test,0,1426,1426
+12,Split 70/15/15,all,"Stratified by season, random seed 42",Honest evaluation later; no leakage,1426,1426,"train 998, validation 214, test 214"
+13,Fill missing values,"rainfall_mm, soil_ph, pest_incidence_index",Rainfall: training median of the same season; others: training median,Keep all records; values learned from the training set only,14,"{'train': 25, 'validation': 0, 'test': 14}","{'train': 0, 'validation': 0, 'test': 0}"
+14,Encoding and scaling,"season, province, soil_type, seed_variety, farming_practice / numerical columns",One-hot encoding; standardisation,Categories have no order; numbers have very different units. Fitted on the training set only,998,17 columns,32 columns
+15,Low-yield label for Question E,low_yield_risk,1 if yield <= 1.94 t/ha (training 20th percentile),"Second target for Question E; it is NOT a feature. Imbalance about 20/80 - planned remedy: class weights, or resampling on training data only",1426,not present,added to all three sets

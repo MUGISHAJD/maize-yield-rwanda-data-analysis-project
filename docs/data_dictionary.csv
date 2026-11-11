@@ -1,0 +1,21 @@
+Column name,Meaning,Data type,Unit,Allowed values / notes,pandas dtype,Observed values,Missing
+record_id,Record code of the farm observation,text,-,"Identifier only, not a feature",object,1426 unique values,0
+year,Year of the season,integer,year,2015 to 2024,int64,2015 to 2024,0
+season,Agricultural season,category,-,"A, B, C",object,"A, B, C",0
+province,Province of the farm,category,-,5 provinces,object,"Eastern, Kigali, Northern, Southern, Western",0
+district,District of the farm,category,-,30 districts,object,30 unique values,0
+altitude_m,Altitude of the farm,integer,metres,Positive,int64,1243 to 2341,0
+rainfall_mm,Rainfall during the season,decimal,mm,Positive; has missing values,float64,150.0 to 933.3,11
+avg_temp_c,Average temperature during the season,decimal,deg C,Maize grows best at about 18 to 27,float64,15.4 to 23.0,0
+soil_ph,Soil acidity,decimal,pH,Farmland about 4 to 8; has missing values,float64,4.5 to 7.2,14
+soil_type,Type of soil,category,-,5 types,object,"Clay, Clay loam, Loam, Sandy loam, Volcanic",0
+seed_variety,Maize seed variety planted,category,-,Local or a named improved variety,object,"Local, PAN691, RHM104, WH505, ZM607, ZM621",0
+farming_practice,Farming practice recorded by the officer,category,-,"Improved, Traditional (no definition supplied)",object,"Improved, Traditional",0
+npk_kg_ha,NPK fertiliser applied per hectare,decimal,kg/ha,0 = none applied,float64,0.0 to 208.1,0
+urea_kg_ha,Urea fertiliser applied per hectare,decimal,kg/ha,0 = none applied,float64,0.0 to 135.2,0
+manure_t_ha,Manure applied per hectare,decimal,t/ha,0 = none applied,float64,0.0 to 6.86,0
+plant_density_per_ha,Number of plants per hectare,integer,plants/ha,Positive,int64,19337 to 72248,0
+farm_area_ha,Size of the farm,decimal,hectares,Positive; one unit only,float64,0.1 to 4.22,0
+irrigation,Whether the plot was irrigated,category,-,"Yes, No",object,"No, Yes",0
+pest_incidence_index,"Level of pests as an index (assumed 0 = none, 1 = severe)",decimal,index,0 to 1; has missing values,float64,0.001 to 0.929,14
+yield_t_ha,Maize yield per hectare - THE TARGET,decimal,t/ha,"1 t/ha = 1,000 kg/ha",float64,1.01 to 5.15,0

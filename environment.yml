@@ -1,0 +1,12 @@
+name: ml-project
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13.0
+  - pandas=2.2.3
+  - numpy=2.2.5
+  - matplotlib=3.10.1
+  - seaborn=0.13.2
+  - scikit-learn=1.7.0
+  - joblib=1.5.1
+  - notebook

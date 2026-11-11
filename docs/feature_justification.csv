@@ -1,0 +1,11 @@
+Feature,How it was created,Business question,Purpose,Correlation with yield (train),Mutual information (train),Decision
+total_fert_kg_ha,npk_kg_ha + urea_kg_ha,B,"All mineral fertiliser per hectare, comparable between farms of any size",0.235,0.0,Kept
+any_fertiliser,1 if total_fert_kg_ha > 0,B,Separates farms using no mineral fertiliser from the others,-0.011,0.006,Removed by SelectKBest: weak link with yield
+improved_seed,1 if seed_variety is not Local,B,Clear answer to: does improved seed increase yield?,0.544,0.229,Kept
+manure_and_fert,1 if manure > 0 and mineral fertiliser > 0,B,Farms combining organic and mineral inputs,0.07,0.001,Kept
+altitude_zone,"altitude_m in 3 groups: below 1500, 1500-1900, above 1900 m","C, D",Lowland / middle / highland comparison,0.082,0.026,Kept
+temp_optimal,1 if avg_temp_c is between 18 and 27,C,Agronomist: maize grows best in this range,0.013,0.0,Removed by SelectKBest: weak link with yield
+ph_optimal,1 if soil_ph is between 5.5 and 7,C,Agronomist: maize prefers this soil acidity,0.155,0.0,Kept
+rain_x_irrigation,rainfall_mm x irrigation,C,Lets the effect of rain differ on irrigated plots,0.019,0.011,"Removed: correlation 0.93 with irrigation, which is more strongly linked with yield"
+pest_level,"pest_incidence_index in 3 groups: up to 0.2, 0.2-0.4, above 0.4",E,Simple Low / Medium / High pest risk for early support,-0.225,0.01,"Removed: correlation 0.905 with pest_incidence_index, which is more strongly linked with yield"
+log_farm_area,log(1 + farm_area_ha),A,Reduces the strong right skew of farm size,0.014,0.011,Removed by SelectKBest: weak link with yield

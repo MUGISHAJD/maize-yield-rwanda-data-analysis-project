@@ -1,0 +1,17 @@
+Problem,Columns affected,Records affected,Severity,Proposed treatment
+File differs from the description in the task sheet,"cooperative_id, planting_date, farmer_age, harvest_weight_kg absent",1426,High,Work with the file as received; report that results by cooperative are not possible
+Missing values,"rainfall_mm, soil_ph, pest_incidence_index",14,Medium,Keep the records; fill with the median learned from the training set (rainfall: median of the same season)
+Few records for Season C,season,226,Medium,Keep; stratify the split by season so every set has Season C
+Few irrigated plots (imbalance),irrigation,128,Medium,Keep; report that irrigation results are less certain
+Rainfall values at a lower limit,rainfall_mm,21,Low,Keep (possible in the dry season); report as a limit
+Skewed column with outliers,farm_area_ha,75,Low,Keep (realistic farms); apply a log transformation
+Other IQR outliers inside the possible range,"soil_ph, pest_incidence_index, manure_t_ha, yield_t_ha",37,Low,Keep; values are realistic
+Values outside the typical range,avg_temp_c below 18 C; yield_t_ha above 4 t/ha,363,Low,Checked: highland farms and improved varieties; keep
+Zeros that could be confused with missing,"npk_kg_ha, urea_kg_ha, manure_t_ha",351,Low,Keep as real zeros (none applied); add a fertiliser-used flag
+Unclear category meaning,farming_practice against seed_variety,152,Low,Keep both; create a clear improved_seed flag
+Identifier column,record_id,1426,Medium,Do not use as a feature (it would let a model memorise records)
+Text stored as Yes/No,irrigation,1426,Low,Convert to 1/0
+Duplicates,all columns,0,None,Checked: none found
+Inconsistent spelling or labels,all text columns,0,None,Checked: none found
+Impossible values,all numerical columns,0,None,Checked: none found
+Leakage (column known only after harvest),all columns,0,None,Checked: only the target is a harvest result

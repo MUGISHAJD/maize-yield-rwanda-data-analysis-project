@@ -1,0 +1,15 @@
+Original column,Correlation with yield (train),Decision
+year,0.158,Kept
+altitude_m,0.077,Kept
+rainfall_mm,0.385,Kept
+avg_temp_c,-0.058,Kept (business rule: needed for Questions C and D)
+soil_ph,0.11,Kept
+npk_kg_ha,0.221,"Removed: correlation 0.939 with total_fert_kg_ha, which is more strongly linked with yield"
+urea_kg_ha,0.202,Kept
+manure_t_ha,0.142,Kept
+plant_density_per_ha,0.281,Kept
+farm_area_ha,0.012,"Removed: correlation 0.982 with log_farm_area, which is more strongly linked with yield"
+pest_incidence_index,-0.243,Kept
+irrigation,-0.034,Kept (business rule: needed for Questions C and D)
+district,,"Not used as a feature: 30 labels, each inside one province (kept in data/interim)"
+record_id,,Not used as a feature: identifier

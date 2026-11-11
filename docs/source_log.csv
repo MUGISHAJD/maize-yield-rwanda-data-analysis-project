@@ -1,0 +1,11 @@
+Field,Entry
+Source,"File supplied with the practical task (Question 1, MCSU scenario)"
+File name,maize_yield_rwanda_rw.csv
+Link,Not applicable - file given by the lecturer
+Date accessed,11 November 2026
+Licence,"For this course only (task sheet, Section 9)"
+Who collected it,According to the scenario: MCSU field officers; the task sheet says the data is synthetic
+Size,1426 rows x 20 columns
+MD5 of raw file,fb12ef767837f387169b3384588cf357
+Limitations,"Does not match the description in the task sheet: no cooperative, planting date, farmer age or harvest weight; years 2015-2024"
+Ethical issues,No personal information in the file. Bias risk: Season C and irrigated plots have few records
